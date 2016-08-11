@@ -1,9 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './Components/App';
-import './index.css';
+var React = require('react');
+var ReactDOM = require('react-dom');
+var routes = require('./configuration/routes');
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+ReactDOM.render(routes , document.getElementById('root'));
