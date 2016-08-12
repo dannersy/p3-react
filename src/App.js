@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import Signup from './SignUp';
-import './App.css';
+import SignUp from './SignUp';
 
+console.log({SignUp});
 class App extends Component {
 
   render() {
     return (
       <div className="App">
-        <Signup />
+        <h1>Hi Boo</h1>
+          <SignUp />
       </div>
     );
   }

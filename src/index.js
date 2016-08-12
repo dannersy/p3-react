@@ -1,5 +1,15 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var routes = require('./configuration/routes');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
+import App from './App';
+import SaveSomething from './SaveSomething';
+import './index.css';
 
-ReactDOM.render(routes , document.getElementById('root'));
+ReactDOM.render(
+  <Router history={browserHistory}>
+    <Route path="/" component={App} />
+    <Route path='/SaveSomething' component={SaveSomething} />
+    </Router>
+
+,document.getElementById('root')
+);
