@@ -7,14 +7,17 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <h1>Bomberman</h1>
         <br></br>
           <Link to="/AboutGame">About the Game</Link>
           <br></br>
-          <Link to="AboutMakers">About the Makers</Link>
+          <br></br>
+          <Link to="/AboutMakers">About the Makers</Link>
+          <br></br>
           <br></br>
           <Link to="/StartGame">THE GAME</Link>
+          <br></br>
           <br></br>
       </div>
     );
