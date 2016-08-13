@@ -6,60 +6,36 @@ const config = {
   databaseURL: "https://testingauth-9f65c.firebaseio.com",
   storageBucket: "testingauth-9f65c.appspot.com",
 };
-firebase.initializeApp(config)
+firebaseapp.initializeApp(config)
 
-const createUser = {
+const firebaseUtils = {
 
-signUp: function(email, pass) {
-    const auth = firebaseapp.auth();
-    auth.createUserWithEmailAndPassword(email, pass).then((userResponse) => {
-        console.log(userResponse);
-
-      // [START sendemailverification]
-      firebase.auth().currentUser.sendEmailVerification().then(function() {
-        // Email Verification sent!
-        // [START_EXCLUDE]
-        alert('Email Verification Sent!');
-        // [END_EXCLUDE]
-      });
-      // [END sendemailverification]
-    }
-      ).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error);
-
-  // ...
-});;
-  },
-
-  signIn: function(email, password) {
-
-    firebase.auth().signInWithEmailAndPassword(email, password).then((userResponse) => {
-        console.log("yars", userResponse.uid);
-        firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          alert("You're in!")
-          // User is signed in.
-        } else {
-          alert("Youre not in!")
-          // No user is signed in.
-        }
-      });
-      localStorage.setItem(userResponse.uid)
-      }).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // ...
-});
-  },
+    signUp: function (email, pass, obj) {
+        const auth = firebaseapp.auth();
+        auth.createUserWithEmailAndPassword(email, pass).catch((error) => {
+            if (error) {
+                console.log("error: ", error)
+            }
+        }).then((res) => {
+            console.log(res);
+            firebase.database().ref('users/'+res.uid).set({
+                firstName: obj.firstName,
+                lastName: obj.lastName,
+                userName: obj.userName,
+                email: obj.email,
+                phone: obj.phone
+            })
+        })
+    },
+    signIn: function (email, password) {
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(error => {
+            console.error(error.code, error.message);
+        }).then((res) => {
+            console.log(res);
+            console.log(res.uid);
+            window.localStorage.setItem("uid", res.uid);
+        });
+    },
 
 
 //   firebase.auth().onAuthStateChanged(function(user) {
@@ -85,4 +61,4 @@ signUp: function(email, pass) {
 
 
 
-export default createUser;
+export default firebaseUtils;

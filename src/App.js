@@ -19,6 +19,7 @@ class App extends Component {
           <Link to="/Board">THE GAME</Link>
           <br></br>
           <br></br>
+          <Link to="/StartGame">LETS SIGN IN</Link>
       </div>
     );
   }

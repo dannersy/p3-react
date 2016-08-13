@@ -7,41 +7,21 @@ class SignUp extends Component {
 constructor(props) {
   super(props);
   this.state = {
-    email : " ",
-    pw : " ",
-    userid : " "
+          email: " ",
+          pw: " ",
+          userName: "",
+          dob: "",
+          firstName: "",
+          lastName: "",
+          phone: 0
+      }
   }
 
-}
 
-takeInputEm(event) {
-  let email = this.setState({email : event.target.value})
-  console.log(event.target.value)
-
-  return email
-}
-takeInputPw(event) {
-  let pw = this.setState({pw : event.target.value})
-  console.log(event.target.value)
-  return pw
-}
-
-makeUser(event, email, pw) {
-  console.log("hi!");
-  console.log('emmma', this.state.email);
-  helpers.signUp(this.state.email,this.state.pw)
-}
-
-signUser(event, email, pw) {
-  console.log("signing you in");
-  console.log('emmma', this.state.email);
-  console.log("email : ", this.state.email, "password : ", this.state.pw);
-  helpers.signIn(this.state.email, this.state.pw).then((res)=>{
-    this.setState({
-      userid: res.uid
-    })
-    console.log(this.state.userid);
-  })
+makeUser(event, email, pw, obj) {
+    console.log("hi!");
+    helpers.signUp(this.state.email, this.state.pw, this.state);
+    console.log("email : ", this.state.email, "password : ", this.state.pw);
 }
 
 
@@ -51,21 +31,21 @@ signUser(event, email, pw) {
 render() {
   return(
     <div>
-        <div>
+
       <h1>SIGN UP</h1>
-        <br></br>
-        <label>Email?</label>
-        <input onChange={(event) => this.takeInputEm(event)} />
-        <label>Password?</label>
-      <input onChange={(event) => this.takeInputPw(event)} />
-      <br></br>
-      <button onClick={(event) => this.makeUser(event)}>Let's Make Me!</button>
-      </div>
+        <ol>
+          <li> Email: <input onChange={(event) => this.setState({email: event.target.value})} /></li>
+          <li> Password: <input onChange={(event) => this.setState({pw: event.target.value})} /></li>
+          <li> Username: <input onChange={(event) => this.setState({username: event.target.value})} /></li>
+          <li> First Name: <input onChange={(event) => this.setState({firstName: event.target.value})} /></li>
+          <li> Last Name: <input onChange={(event) => this.setState({lastName: event.target.value})} /></li>
+          <li> Phone Number: <input onChange={(event) => this.setState({phone: event.target.value})} /></li>
+        </ol>
+        <button onClick={(event) => this.makeUser(event)}>Make Me!</button>
       <h1>OR</h1>
-      <div>
         <h1>SIGN IN</h1>
-      <button onClick={(event) => this.signUser(event)}><Link to="/SaveSomething">Let's Check Me!</Link></button>
-      </div>
+      <button><Link to="/SaveSomething">Let's Check Me!</Link></button>
+
     </div>
 
   )

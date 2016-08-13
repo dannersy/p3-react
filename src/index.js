@@ -7,6 +7,7 @@ import SaveSomething from './SaveSomething';
 import AboutMakers from './AboutMakers';
 import AboutGame from './AboutGame';
 import Board from './Board';
+
 import './index.css';
 
 ReactDOM.render(
@@ -17,6 +18,7 @@ ReactDOM.render(
     <Route path="/AboutMakers" component={AboutMakers} />
     <Route path="/AboutGame" component={AboutGame} />
     <Route path="/Board" component={Board} />
+    <Route path="/StartGame" component={StartGame} />
     </Router>
 
 ,document.getElementById('root')
