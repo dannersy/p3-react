@@ -22,8 +22,7 @@ const firebaseUtils = {
                 firstName: obj.firstName,
                 lastName: obj.lastName,
                 userName: obj.userName,
-                email: obj.email,
-                phone: obj.phone
+                email: obj.email
             })
         })
     },

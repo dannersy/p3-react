@@ -1,25 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
-import App from './App';
-import StartGame from './StartGame';
-import SaveSomething from './SaveSomething';
-import AboutMakers from './AboutMakers';
-import AboutGame from './AboutGame';
-import Board from './Board';
-
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import App from './Components/App';
+// import StartGame from './Components/StartGame';
+import Home from './Components/Home';
+// import SaveSomething from './Components/SaveSomething';
+import AboutMakers from './Components/AboutMakers';
+import AboutGame from './Components/AboutGame';
+import Game from './Components/Game';
+import StartGame from './Components/StartGame';
 import './index.css';
 
-ReactDOM.render(
+ReactDOM.render (
   <Router history={browserHistory}>
-    <Route path="/" component={App} />
-    <Route path='/StartGame' component={StartGame} />
-    <Route path='/SaveSomething' component={SaveSomething} />
-    <Route path="/AboutMakers" component={AboutMakers} />
-    <Route path="/AboutGame" component={AboutGame} />
-    <Route path="/Board" component={Board} />
-    <Route path="/StartGame" component={StartGame} />
-    </Router>
+    <Route path="/" component={App}>
+      <IndexRoute component={Home} />
+      <Route path="/game" component={Game} />
+      <Route path="/about_game" component={AboutGame} />
+      <Route path="/about_makers" component={AboutMakers} />
+      <Route path="/StartGame" component={StartGame} />
+    </Route>
+  </Router>,
+  document.getElementById('root')
 
-,document.getElementById('root')
 );

@@ -5,7 +5,6 @@
   float: left;
   background-color: green;
 }
-
 .man {
   height: 100%;
   width: 100%;
@@ -16,7 +15,6 @@
   width: 100%;
   background-color: pink;
 }
-
 .earth {
   height: 100%;
   width: 100%;
@@ -37,22 +35,11 @@
   width: 100%;
   background-color: red;
 }
-.bombAndMan {
-  height: 100%;
-  width: 100%;
-  background-color: lightgreen;
-}
-.carry {
-  height: 100%;
-  width: 100%;
-  background-color: yellow;
-}
 .crate {
   height: 100%;
   width: 100%;
   background-color: beige;
 }
-
 .icon {
   height: 100%;
   width: 100%;

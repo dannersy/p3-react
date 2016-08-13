@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import update from 'react-addons-update'
-import createTiles from './utils/CreateTiles.js';
+import createTiles from '../utils/CreateTiles.js';
 import TileContainer from './TileContainer.js';
-import movement from './utils/Movement.js';
+import movement from '../utils/Movement.js';
 import { Link } from 'react-router';
-import './Board.css';
+import './Game.css';
 
-class Board extends Component {
+
+class Game extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -14,92 +15,85 @@ class Board extends Component {
     }
   };
 
+  fireTimer(){
+    const App = this;
+    window.setInterval(function(){
+      console.log("timer");
+      App.eachFire();
+    },500)
+  }; //Check for fire
+
+  eachFire(){
+    const App = this;
+    const fireTiles = this.state.tiles.filter(tile => tile.fire === true);
+    fireTiles.map(function(tile, t){
+      return App.clearFire(tile);
+    })
+  }; //For each fire run clearFire with current tile info
+
+  clearFire(tile){
+    const tiles = this.state.tiles;
+    const atTile = tiles.indexOf(tile);
+    this.setState({
+      tiles: update(this.state.tiles, {[atTile]: {
+        fire: {$set: false},
+        playerOne: {$set: false}
+      }})
+    });
+  }; //Clear fire, destroy player if inside fire
+
   bomb(bombIndex){
-    const App = this
+    const App = this;
     window.setTimeout(function(){
       App.explosion(bombIndex)},3000)
-  };
+  }; //Start bomb/explosion timer
 
   explosion(bombIndex){
     const tiles = this.state.tiles;
-    const bombCoords = tiles[bombIndex];
-    const obj = bombCoords
-
-    const showMe = fourWay(obj)
-
-    console.log(bombIndex);
-
+    const showMe = fourWay(tiles[bombIndex]);
     function fourWay(bCoords) {
       const exCoords = []
-      // right 1, right 2
       exCoords.push([{x: bCoords.x + 1, y: bCoords.y},{x: bCoords.x + 2, y: bCoords.y}])
-      // left 1, left 2
       exCoords.push([{x: bCoords.x - 1, y: bCoords.y},{x: bCoords.x - 2, y: bCoords.y}])
-      // up 1, up 2
       exCoords.push([{x: bCoords.x, y: bCoords.y + 1},{x: bCoords.x, y: bCoords.y + 2}])
-      // down 1, down 2
       exCoords.push([{x: bCoords.x, y: bCoords.y - 1},{x: bCoords.x, y: bCoords.y - 2}])
       return exCoords
-    }
-
-    console.log(showMe);
+    } //Get explosion "radius"
     this.setState({
       tiles: update(this.state.tiles, {[bombIndex]: {
         bomb: {$set: false},
-        playerOne: {$set: false}
+        playerOne: {$set: false},
+        fire: {$set: true}
       }})
     })
-
     for (let i = 0; i < showMe.length; i++) {
       let checkExp = showMe[i]
       let willExplode = tiles.filter(tile => tile.x === checkExp[0].x && tile.y === checkExp[0].y && tile.cement === false)
-
       let willExplodeTwo = tiles.filter(tile => tile.x === checkExp[1].x && tile.y === checkExp[1].y && tile.cement === false)
-
       if (willExplode.length) {
         const toExplode = tiles.indexOf(willExplode[0])
         const twoExplode = tiles.indexOf(willExplodeTwo[0])
-
         this.setState({
           tiles: update(this.state.tiles, {[toExplode]: {
-            bomb: {$set: false},
-            playerOne: {$set: false},
-            crate: {$set: false}
-          }})
-        })
-
-        this.setState({
-          tiles: update(this.state.tiles, {[twoExplode]: {
-            bomb: {$set: false},
+            fire: {$set: true},
+            crate: {$set: false},
             playerOne: {$set: false}
           }})
         })
-
-
+        if (willExplode[0].crate === false) {
+          this.setState({
+            tiles: update(this.state.tiles, {[twoExplode]: {
+              fire: {$set: true},
+              crate: {$set: false},
+              playerOne: {$set: false}
+            }})
+          })
+        };
       } else {
           return
-      }
-
-
-      for (var j = 0; j < showMe[i].length; j++) {
-        const show = tiles.filter( (oneObj, index) => {
-          // showMe[i][j] === oneObj
-        })
-        console.log("show", show);
-        // console.log(tiles.indexOf(showMe[i][j]));
-        // if ( showMe[i][j].wall === false ) {
-        //   console.log("not a wall");
-        //   explodeMe(bombIndex)
-        //
-        //   // this.setState({
-        //   //   tiles:update(this.state.tiles, {showMe[i][j]})
-        //   // })
-        // } else {
-        //   return
-        // }
-      }
+      };
     }
-  };
+  }; //End Explosion
 
   handleKeyDown(event){
     let position = this.state.tiles.filter(tile => tile.playerOne === true);
@@ -130,6 +124,7 @@ class Board extends Component {
   componentDidMount(){
     window.addEventListener('keydown', this.handleKeyDown.bind(this))
     this.setState({tiles: createTiles()});
+    this.fireTimer();
   }; //Adds event listener and setsState of gameboard
 
   render(){
@@ -142,4 +137,4 @@ class Board extends Component {
   }; //Container worried about one state that changes based on user input.
 }
 
-export default Board;
+export default Game;

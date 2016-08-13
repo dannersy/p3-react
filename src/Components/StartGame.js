@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import helpers from './utilities/AuthHelpers';
+import helpers from '../utilities/AuthHelpers';
+import NavLink from './NavLink';
 import { Link } from 'react-router';
+import './App.css';
 
 
 class SignUp extends Component {
 constructor(props) {
   super(props);
   this.state = {
+          firstName: " ",
+          lastName: " ",
           email: " ",
-          pw: " ",
-          userName: "",
-          dob: "",
-          firstName: "",
-          lastName: "",
-          phone: 0
+          userName: " ",
+          pw: " "
       }
   }
 
@@ -34,12 +34,11 @@ render() {
 
       <h1>SIGN UP</h1>
         <ol>
-          <li> Email: <input onChange={(event) => this.setState({email: event.target.value})} /></li>
-          <li> Password: <input onChange={(event) => this.setState({pw: event.target.value})} /></li>
-          <li> Username: <input onChange={(event) => this.setState({username: event.target.value})} /></li>
           <li> First Name: <input onChange={(event) => this.setState({firstName: event.target.value})} /></li>
           <li> Last Name: <input onChange={(event) => this.setState({lastName: event.target.value})} /></li>
-          <li> Phone Number: <input onChange={(event) => this.setState({phone: event.target.value})} /></li>
+          <li> Email: <input onChange={(event) => this.setState({email: event.target.value})} /></li>
+          <li> Username: <input onChange={(event) => this.setState({username: event.target.value})} /></li>
+          <li> Password: <input onChange={(event) => this.setState({pw: event.target.value})} /></li>
         </ol>
         <button onClick={(event) => this.makeUser(event)}>Make Me!</button>
       <h1>OR</h1>

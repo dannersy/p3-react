@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import Grass from './Tiles/Grass.js';
-import Cement from './Tiles/Cement.js';
-import PlayerOne from './Tiles/PlayerOne.js';
-import Crate from './Tiles/Crate.js';
-import Bomb from './Tiles/Bomb.js';
-import POneBomb from './Tiles/POneBomb.js';
+import Grass from '../Tiles/Grass.js';
+import Cement from '../Tiles/Cement.js';
+import PlayerOne from '../Tiles/PlayerOne.js';
+import Crate from '../Tiles/Crate.js';
+import Bomb from '../Tiles/Bomb.js';
+import Fire from '../Tiles/Fire.js';
+import POneBomb from '../Tiles/POneBomb.js';
 
 class TileContainer extends Component {
 
@@ -21,6 +22,8 @@ class TileContainer extends Component {
         return <Bomb key={[tile.x, tile.y]} />
       } else if (tile.bomb === true && tile.playerOne === true) {
         return <POneBomb key={[tile.x, tile.y]} />
+      } else if (tile.fire === true) {
+        return <Fire key={[tile.x, tile.y]} />
       } else {
         return <Grass key={[tile.x, tile.y]} />
       }

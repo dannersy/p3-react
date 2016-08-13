@@ -1,4 +1,4 @@
-import '../Board.css'
+import '../Components/Game.css'
 import React from 'react';
 
 function PlayerOne(props){
