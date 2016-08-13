@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Helpers from './utilities/AuthHelpers';
+import helpers from './utilities/AuthHelpers';
 import { Link } from 'react-router';
 
 
@@ -9,7 +9,7 @@ constructor(props) {
   this.state = {
     email : " ",
     pw : " ",
-    uid : " "
+    userid : " "
   }
 
 }
@@ -29,21 +29,21 @@ takeInputPw(event) {
 makeUser(event, email, pw) {
   console.log("hi!");
   console.log('emmma', this.state.email);
-  Helpers.SignUp(this.state.email,this.state.pw)
+  helpers.signUp(this.state.email,this.state.pw)
 }
 
 signUser(event, email, pw) {
   console.log("signing you in");
   console.log('emmma', this.state.email);
   console.log("email : ", this.state.email, "password : ", this.state.pw);
-  Helpers.SignIn(this.state.email, this.state.pw)
-  .then(res => {
-    console.log(res)
+  helpers.signIn(this.state.email, this.state.pw).then((res)=>{
+    this.setState({
+      userid: res.uid
+    })
+    console.log(this.state.userid);
   })
-  // this.setState({uid : localStorage.getItem(uid)})
-  // console.log(this.state.uid)
+}
 
-};
 
 
 
@@ -61,6 +61,7 @@ render() {
       <br></br>
       <button onClick={(event) => this.makeUser(event)}>Let's Make Me!</button>
       </div>
+      <h1>OR</h1>
       <div>
         <h1>SIGN IN</h1>
       <button onClick={(event) => this.signUser(event)}><Link to="/SaveSomething">Let's Check Me!</Link></button>

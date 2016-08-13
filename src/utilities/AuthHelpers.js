@@ -10,7 +10,7 @@ firebase.initializeApp(config)
 
 const createUser = {
 
-SignUp: function(email, pass) {
+signUp: function(email, pass) {
     const auth = firebaseapp.auth();
     auth.createUserWithEmailAndPassword(email, pass).then((userResponse) => {
         console.log(userResponse);
@@ -39,7 +39,7 @@ SignUp: function(email, pass) {
 });;
   },
 
-  SignIn: function(email, password) {
+  signIn: function(email, password) {
 
     firebase.auth().signInWithEmailAndPassword(email, password).then((userResponse) => {
         console.log("yars", userResponse.uid);
@@ -73,7 +73,7 @@ SignUp: function(email, pass) {
 // });
 
 
-  SignOut: function() {
+  signOut: function() {
 
     firebase.auth().signOut().then(function() {
   // Sign-out successful.

@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import SignUp from './SignUp';
+import { Link } from 'react-router';
+import './App.css';
 
-console.log({SignUp});
+
 class App extends Component {
 
   render() {
     return (
       <div className="App">
-        <h1>Hi Boo</h1>
-          <SignUp />
+        <h1>Bomberman</h1>
+        <br></br>
+          <Link to="/AboutGame">About the Game</Link>
+          <br></br>
+          <Link to="AboutMakers">About the Makers</Link>
+          <br></br>
+          <Link to="/StartGame">THE GAME</Link>
+          <br></br>
       </div>
     );
   }
