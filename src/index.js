@@ -8,7 +8,8 @@ import Home from './Components/Home';
 import AboutMakers from './Components/AboutMakers';
 import AboutGame from './Components/AboutGame';
 import Game from './Components/Game';
-import StartGame from './Components/StartGame';
+import SignUp from './Components/SignUp';
+import LogIn from './Components/LogIn';
 import './index.css';
 
 ReactDOM.render (
@@ -18,7 +19,8 @@ ReactDOM.render (
       <Route path="/game" component={Game} />
       <Route path="/about_game" component={AboutGame} />
       <Route path="/about_makers" component={AboutMakers} />
-      <Route path="/StartGame" component={StartGame} />
+      <Route path="/SignUp" component={SignUp} />
+      <Route path="/LogIn" component={LogIn} />
     </Route>
   </Router>,
   document.getElementById('root')

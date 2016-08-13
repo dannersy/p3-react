@@ -30,8 +30,8 @@ const firebaseUtils = {
         firebase.auth().signInWithEmailAndPassword(email, password).catch(error => {
             console.error(error.code, error.message);
         }).then((res) => {
-            console.log(res);
-            console.log(res.uid);
+            console.log("auth", res);
+            console.log("auth", res.uid);
             window.localStorage.setItem("uid", res.uid);
         });
     },

@@ -19,7 +19,7 @@ class App extends Component {
         <NavLink to='/game' onlyActiveOnIndex>BOMBERMAN</NavLink>
         <br></br>
         <br></br>
-        <NavLink to="/StartGame" onlyActiveOnIndex>SIGN UP</NavLink>
+        <NavLink to="/SignUp" onlyActiveOnIndex>SIGN UP</NavLink>
         {this.props.children}
       </div>
     )

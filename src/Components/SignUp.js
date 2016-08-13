@@ -40,10 +40,9 @@ render() {
           <li> Username: <input onChange={(event) => this.setState({username: event.target.value})} /></li>
           <li> Password: <input onChange={(event) => this.setState({pw: event.target.value})} /></li>
         </ol>
-        <button onClick={(event) => this.makeUser(event)}>Make Me!</button>
+        <button onClick={(event) => this.makeUser(event)}><Link to="/LogIn">Make Me!</Link></button>
       <h1>OR</h1>
-        <h1>SIGN IN</h1>
-      <button><Link to="/SaveSomething">Let's Check Me!</Link></button>
+        <h1><Link to="/LogIn">SIGN IN</Link></h1>
 
     </div>
 
