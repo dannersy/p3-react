@@ -5,7 +5,8 @@
 }
 
 .grass {
-  background: green;
+  background-color: green;
+  /*background-image: url('http://opengameart.org/sites/default/files/grass03_0.png');*/
   height: 11%;
   width: 11%;
   float: left;
@@ -17,7 +18,8 @@
 }
 
 .cement {
-  background: grey;
+  background: green;
+  /*background-image: url('http://opengameart.org/sites/default/files/grass03_0.png');*/
   height: 11%;
   width: 11%;
   float: left;
@@ -31,8 +33,15 @@
 }
 
 .crate{
-  background: brown;
+  background: green;
+  /*background-image: url('http://opengameart.org/sites/default/files/grass03_0.png');*/
   height: 11%;
   width: 11%;
+  float: left;
+}
+
+.iconCrate{
+  height: 98%;
+  width: 98%;
   float: left;
 }

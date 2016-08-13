@@ -17,21 +17,28 @@ class Board extends Component {
     const App = this;
     window.setInterval(function(){
       console.log("timer");
-      App.clearFire()
-    },1000)
-  }
+      App.eachFire();
+    },500)
+  }; //Check for fire
 
-  clearFire(){
+  eachFire(){
+    const App = this;
     const fireTiles = this.state.tiles.filter(tile => tile.fire === true);
-    console.log(fireTiles);
-    for (let f = 0; f < fireTiles.length; f++){
-      this.setState({
-        tiles: update(this.state.tiles, {[f]: {
-          fire: {$set: false},
-        }})
-      })
-    }
-  }
+    fireTiles.map(function(tile, t){
+      return App.clearFire(tile);
+    })
+  }; //For each fire run clearFire with current tile info
+
+  clearFire(tile){
+    const tiles = this.state.tiles;
+    const atTile = tiles.indexOf(tile);
+    this.setState({
+      tiles: update(this.state.tiles, {[atTile]: {
+        fire: {$set: false},
+        playerOne: {$set: false}
+      }})
+    });
+  }; //Clear fire, destroy player if inside fire
 
   bomb(bombIndex){
     const App = this;
@@ -67,7 +74,6 @@ class Board extends Component {
         this.setState({
           tiles: update(this.state.tiles, {[toExplode]: {
             fire: {$set: true},
-            bomb: {$set: false},
             crate: {$set: false},
             playerOne: {$set: false}
           }})
@@ -76,7 +82,6 @@ class Board extends Component {
           this.setState({
             tiles: update(this.state.tiles, {[twoExplode]: {
               fire: {$set: true},
-              bomb: {$set: false},
               crate: {$set: false},
               playerOne: {$set: false}
             }})
