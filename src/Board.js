@@ -13,13 +13,13 @@ class Board extends Component {
     }
   };
 
-  // fireTimer(){
-  //   const App = this;
-  //   window.setInterval(function(){
-  //     console.log("timer");
-  //     App.eachFire();
-  //   },500)
-  // }; //Check for fire
+  fireTimer(){
+    const App = this;
+    window.setInterval(function(){
+      console.log("timer");
+      App.eachFire();
+    },500)
+  }; //Check for fire
 
   eachFire(){
     const App = this;
@@ -67,13 +67,10 @@ class Board extends Component {
     })
     for (let i = 0; i < showMe.length; i++) {
       let checkExp = showMe[i]
-      let willExplode = tiles.filter(tile => tile.x === checkExp[0].x && tile.y === checkExp[0].y && (tile.cement === false));
+      let willExplode = tiles.filter(tile => tile.x === checkExp[0].x && tile.y === checkExp[0].y && tile.cement === false);
       let willExplodeTwo = tiles.filter(tile => tile.x === checkExp[1].x && tile.y === checkExp[1].y && tile.cement === false);
-      console.log("showMe[i]: ", showMe[i]);
-      console.log("checkExp: ", checkExp);
-      console.log("V1: ",willExplode);
-      console.log("V2: ",willExplodeTwo);
-      
+      console.log(willExplode[0]);
+      console.log(checkExp);
       if (willExplode[0]) {
         const toExplode = tiles.indexOf(willExplode[0])
         const twoExplode = tiles.indexOf(willExplodeTwo[0])
@@ -84,7 +81,7 @@ class Board extends Component {
             playerOne: {$set: false}
           }})
         })
-        if (willExplode[0].crate === false) {
+        if (willExplodeTwo[0] && tiles[toExplode].crate === false) {
           this.setState({
             tiles: update(this.state.tiles, {[twoExplode]: {
               fire: {$set: true},
@@ -92,11 +89,9 @@ class Board extends Component {
               playerOne: {$set: false}
             }})
           })
-        };
-      } else {
-          return
-      };
-    }
+        }; //End block radius 2
+      } //End block radius 1
+    } //End loop
   }; //End Explosion
 
   handleKeyDown(event){
