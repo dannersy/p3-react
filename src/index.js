@@ -6,6 +6,7 @@ import StartGame from './StartGame';
 import SaveSomething from './SaveSomething';
 import AboutMakers from './AboutMakers';
 import AboutGame from './AboutGame';
+import Board from './Board';
 import './index.css';
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
     <Route path='/SaveSomething' component={SaveSomething} />
     <Route path="/AboutMakers" component={AboutMakers} />
     <Route path="/AboutGame" component={AboutGame} />
+    <Route path="/Board" component={Board} />
     </Router>
 
 ,document.getElementById('root')

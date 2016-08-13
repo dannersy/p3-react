@@ -7,7 +7,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <h1>Bomberman</h1>
         <br></br>
           <Link to="/AboutGame">About the Game</Link>
@@ -16,12 +16,13 @@ class App extends Component {
           <Link to="/AboutMakers">About the Makers</Link>
           <br></br>
           <br></br>
-          <Link to="/StartGame">THE GAME</Link>
+          <Link to="/Board">THE GAME</Link>
           <br></br>
           <br></br>
       </div>
     );
   }
 }
+
 
 export default App;
