@@ -13,13 +13,13 @@ class Board extends Component {
     }
   };
 
-  fireTimer(){
-    const App = this;
-    window.setInterval(function(){
-      console.log("timer");
-      App.eachFire();
-    },500)
-  }; //Check for fire
+  // fireTimer(){
+  //   const App = this;
+  //   window.setInterval(function(){
+  //     console.log("timer");
+  //     App.eachFire();
+  //   },500)
+  // }; //Check for fire
 
   eachFire(){
     const App = this;
@@ -46,17 +46,18 @@ class Board extends Component {
       App.explosion(bombIndex)},3000)
   }; //Start bomb/explosion timer
 
+  fourWay(bCoords) {
+    const exCoords = []
+    exCoords.push([{x: bCoords.x + 1, y: bCoords.y},{x: bCoords.x + 2, y: bCoords.y}])
+    exCoords.push([{x: bCoords.x - 1, y: bCoords.y},{x: bCoords.x - 2, y: bCoords.y}])
+    exCoords.push([{x: bCoords.x, y: bCoords.y + 1},{x: bCoords.x, y: bCoords.y + 2}])
+    exCoords.push([{x: bCoords.x, y: bCoords.y - 1},{x: bCoords.x, y: bCoords.y - 2}])
+    return exCoords;
+  } //Get explosion "radius"
+
   explosion(bombIndex){
     const tiles = this.state.tiles;
-    const showMe = fourWay(tiles[bombIndex]);
-    function fourWay(bCoords) {
-      const exCoords = []
-      exCoords.push([{x: bCoords.x + 1, y: bCoords.y},{x: bCoords.x + 2, y: bCoords.y}])
-      exCoords.push([{x: bCoords.x - 1, y: bCoords.y},{x: bCoords.x - 2, y: bCoords.y}])
-      exCoords.push([{x: bCoords.x, y: bCoords.y + 1},{x: bCoords.x, y: bCoords.y + 2}])
-      exCoords.push([{x: bCoords.x, y: bCoords.y - 1},{x: bCoords.x, y: bCoords.y - 2}])
-      return exCoords
-    } //Get explosion "radius"
+    const showMe = this.fourWay(tiles[bombIndex]);
     this.setState({
       tiles: update(this.state.tiles, {[bombIndex]: {
         bomb: {$set: false},
@@ -66,9 +67,14 @@ class Board extends Component {
     })
     for (let i = 0; i < showMe.length; i++) {
       let checkExp = showMe[i]
-      let willExplode = tiles.filter(tile => tile.x === checkExp[0].x && tile.y === checkExp[0].y && tile.cement === false)
-      let willExplodeTwo = tiles.filter(tile => tile.x === checkExp[1].x && tile.y === checkExp[1].y && tile.cement === false)
-      if (willExplode.length) {
+      let willExplode = tiles.filter(tile => tile.x === checkExp[0].x && tile.y === checkExp[0].y && (tile.cement === false));
+      let willExplodeTwo = tiles.filter(tile => tile.x === checkExp[1].x && tile.y === checkExp[1].y && tile.cement === false);
+      console.log("showMe[i]: ", showMe[i]);
+      console.log("checkExp: ", checkExp);
+      console.log("V1: ",willExplode);
+      console.log("V2: ",willExplodeTwo);
+      
+      if (willExplode[0]) {
         const toExplode = tiles.indexOf(willExplode[0])
         const twoExplode = tiles.indexOf(willExplodeTwo[0])
         this.setState({
