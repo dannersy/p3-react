@@ -6,9 +6,8 @@
 
 .grass {
   background: green;
-  height: 10%;
-  width: 10%;
-  border: 1px solid black;
+  height: 11%;
+  width: 11%;
   float: left;
 }
 
@@ -19,24 +18,21 @@
 
 .cement {
   background: grey;
-  height: 10%;
-  width: 10%;
-  border: 1px solid black;
+  height: 11%;
+  width: 11%;
   float: left;
 }
 
 .playerOne{
   background: green;
-  height: 10%;
-  width: 10%;
-  border: 1px solid black;
+  height: 11%;
+  width: 11%;
   float: left;
 }
 
 .crate{
   background: brown;
-  height: 10%;
-  width: 10%;
-  border: 1px solid black;
+  height: 11%;
+  width: 11%;
   float: left;
 }
