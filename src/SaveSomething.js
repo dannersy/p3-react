@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Helpers from './utilities/AuthHelpers';
+import Helpers from './utilities/NormalHelpers';
 
 class SaveSomething extends Component {
 
@@ -12,18 +12,24 @@ class SaveSomething extends Component {
   }
 
 
-  submitInfoName() {
+  submitInfoName(event) {
     this.setState({name : event.target.value});
     console.log(event.target.value)
   }
 
-  submitInfoAge() {
+  submitInfoAge(event) {
     this.setState({age : event.target.value});
     console.log(event.target.value)
   }
 
-  saveStuff() {
+  saveStuff(event) {
+    event.preventDefault();
+    console.log("starting to save");
     //contact Helpers to save stuff to firebase using the id
+    Helpers.saveStuff(this.state.name)
+    .then(res => {
+      console.log(res);
+    })
   }
 
   render() {

@@ -42,7 +42,7 @@ SignUp: function(email, pass) {
   SignIn: function(email, password) {
 
     firebase.auth().signInWithEmailAndPassword(email, password).then((userResponse) => {
-        console.log(userResponse);
+        console.log("yars", userResponse.uid);
         firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           alert("You're in!")
@@ -52,7 +52,7 @@ SignUp: function(email, pass) {
           // No user is signed in.
         }
       });
-
+      localStorage.setItem(userResponse.uid)
       }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;

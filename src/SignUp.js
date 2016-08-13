@@ -8,7 +8,8 @@ constructor(props) {
   super(props);
   this.state = {
     email : " ",
-    pw : " "
+    pw : " ",
+    uid : " "
   }
 
 }
@@ -28,16 +29,21 @@ takeInputPw(event) {
 makeUser(event, email, pw) {
   console.log("hi!");
   console.log('emmma', this.state.email);
-  Helpers.SignUp(this.state.email,this.state.pw);
-  console.log("email : ", this.state.email, "password : ", this.state.pw);
+  Helpers.SignUp(this.state.email,this.state.pw)
 }
 
 signUser(event, email, pw) {
   console.log("signing you in");
   console.log('emmma', this.state.email);
-  Helpers.SignIn(this.state.email, this.state.pw);
   console.log("email : ", this.state.email, "password : ", this.state.pw);
-}
+  Helpers.SignIn(this.state.email, this.state.pw)
+  .then(res => {
+    console.log(res)
+  })
+  // this.setState({uid : localStorage.getItem(uid)})
+  // console.log(this.state.uid)
+
+};
 
 
 
