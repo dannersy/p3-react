@@ -3,6 +3,7 @@ import update from 'react-addons-update'
 import createTiles from '../utils/CreateTiles.js';
 import TileContainer from './TileContainer.js';
 import movement from '../utils/Movement.js';
+import helpers from '../utilities/NormalHelpers';
 import { Link } from 'react-router';
 import './Game.css';
 
@@ -11,7 +12,9 @@ class Game extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tiles: []
+      tiles: [],
+      userId: window.localStorage.uid,
+      text : "shreiya"
     }
   };
 
@@ -121,17 +124,66 @@ class Game extends Component {
     } else return
   };
 
+  saveUserData() {
+    helpers.writeUserData();
+    console.log("save user stuff")
+  }
+
+  // writeUserData(event){
+  //     firebase.database().ref('users/' + this.state.userId).set({
+  //           score: "WON",
+  //           username: "Hello everyone"})
+  //           console.log("done")
+  //         .then(function() {
+  //           return ref.once("value")
+  //         })
+  //         console.log("also done")
+  //       }
+  //         }).then(function() {
+  //   return ref.once("value");
+  // })
+  // .then(function(snapshot) {
+  //   const data = snapshot.val(); // data === "hello"
+
+//   });
+// }
+
+
+  //     .ref('users/' + this.state.userId).set({
+  //       username: "Hello everyone"
+  //     }).then(function() {
+  //   return ref.once("value");
+  // });
+  //     console.log("saved")
+  //   }
+
+    getData(event){
+    const get =  firebase.database().ref('users/' + this.state.userID).once('value').then(function(snapshot) {
+  snapshot.val().username;
+  console.log(get)
+})
+}
+
+
+
   componentDidMount(){
-    window.addEventListener('keydown', this.handleKeyDown.bind(this))
+
+    window.addEventListener('keydown', this.handleKeyDown.bind(this));
     this.setState({tiles: createTiles()});
-    this.fireTimer();
+    // this.fireTimer();//REMEMBER TO GET THIS BACK
   }; //Adds event listener and setsState of gameboard
 
   render(){
     return(
       <div>
+      <br></br>
       <button><Link to="/">Let's go home!</Link></button>
+      <div>
+        <h1>I won!</h1>
+        <button onClick={(event) => this.saveUserData(event)}>Save my score?</button>
+      </div>
       <TileContainer tiles={this.state.tiles} />
+      <button onClick={(event) => this.getData(event)}>Get My Score</button>
       </div>
     )
   }; //Container worried about one state that changes based on user input.

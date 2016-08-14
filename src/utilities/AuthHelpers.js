@@ -36,16 +36,17 @@ const firebaseUtils = {
         });
     },
 
-
-//   firebase.auth().onAuthStateChanged(function(user) {
-//   if (user) {
-//     alert("You're in!")
-//     // User is signed in.
-//   } else {
-//     alert("Youre not in!")
-//     // No user is signed in.
-//   }
-// });
+    checkUser: function (uid) {
+  firebase.auth().onAuthStateChanged(function(uid) {
+  if (uid) {
+    console.log("You're in!")
+    // User is signed in.
+  } else {
+    alert("Youre not in!")
+    // No user is signed in.
+  }
+});
+},
 
 
   signOut: function() {
