@@ -17,7 +17,7 @@ class Game extends Component {
   };
 
   checkWin() {
-    const tiles = this.state.tiles;
+    // const tiles = this.state.tiles;
     const playerOne = this.state.tiles.filter(tile => tile.playerOne === true);
     const playerTwo = this.state.tiles.filter(tile => tile.playerTwo === true);
     if (playerOne.length && playerTwo.length){

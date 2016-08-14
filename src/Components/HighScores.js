@@ -53,11 +53,13 @@ class HighScores extends Component {
   render() {
     // let name = this.state.name
     // let time = this.state.time
+
     return (
       <div className="HighScores">
         <h2>High Scores</h2>
         <Button onClick={(event) => this.save(event)}>Save High Scores</Button>
         <Button onClick={(event) => this.show(event)}>Show All High Scores</Button>
+
       </div>
     )
   }
