@@ -9,15 +9,32 @@ class Board extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tiles: []
+      tiles: [],
+      winner: "false"
     }
   };
+
+  checkWin(){
+    const tiles = this.state.tiles;
+    const playerOne = this.state.tiles.filter(tile => tile.playerOne === true);
+    const playerTwo = this.state.tiles.filter(tile => tile.playerTwo === true);
+    if (playerOne.length && playerTwo.length){
+      return
+    } else if (playerOne.length) {
+      this.setState({winner: "one"})
+    } else if (playerTwo.length) {
+      this.setState({winner: "two"})
+    } else {
+      this.setState({winner: "tie"})
+    }
+    console.log(this.state.winner);
+  }
 
   fireTimer(){
     const App = this;
     window.setInterval(function(){
-      console.log("timer");
       App.eachFire();
+      App.checkWin();
     },500)
   }; //Check for fire
 
@@ -35,7 +52,8 @@ class Board extends Component {
     this.setState({
       tiles: update(this.state.tiles, {[atTile]: {
         fire: {$set: false},
-        playerOne: {$set: false}
+        playerOne: {$set: false},
+        playerTwo: {$set: false}
       }})
     });
   }; //Clear fire, destroy player if inside fire
@@ -62,15 +80,14 @@ class Board extends Component {
       tiles: update(this.state.tiles, {[bombIndex]: {
         bomb: {$set: false},
         playerOne: {$set: false},
-        fire: {$set: true}
+        fire: {$set: true},
+        playerTwo: {$set: false}
       }})
     })
     for (let i = 0; i < showMe.length; i++) {
       let checkExp = showMe[i]
       let willExplode = tiles.filter(tile => tile.x === checkExp[0].x && tile.y === checkExp[0].y && tile.cement === false);
       let willExplodeTwo = tiles.filter(tile => tile.x === checkExp[1].x && tile.y === checkExp[1].y && tile.cement === false);
-      console.log(willExplode[0]);
-      console.log(checkExp);
       if (willExplode[0]) {
         const toExplode = tiles.indexOf(willExplode[0])
         const twoExplode = tiles.indexOf(willExplodeTwo[0])
@@ -78,7 +95,8 @@ class Board extends Component {
           tiles: update(this.state.tiles, {[toExplode]: {
             fire: {$set: true},
             crate: {$set: false},
-            playerOne: {$set: false}
+            playerOne: {$set: false},
+            playerTwo: {$set: false}
           }})
         })
         if (willExplodeTwo[0] && tiles[toExplode].crate === false) {
@@ -86,7 +104,8 @@ class Board extends Component {
             tiles: update(this.state.tiles, {[twoExplode]: {
               fire: {$set: true},
               crate: {$set: false},
-              playerOne: {$set: false}
+              playerOne: {$set: false},
+              playerTwo: {$set: false}
             }})
           })
         }; //End block radius 2
@@ -95,30 +114,54 @@ class Board extends Component {
   }; //End Explosion
 
   handleKeyDown(event){
-    let position = this.state.tiles.filter(tile => tile.playerOne === true);
-    let newPosition = movement(event, position[0]);
-    let atPosition = this.state.tiles.filter(tile => tile.x === newPosition[0] && tile.y === newPosition[1] && tile.cement === false && tile.crate === false && tile.bomb === false)
-    if (atPosition.length){
-      const old = this.state.tiles.indexOf(position[0]);
-      const newer = this.state.tiles.indexOf(atPosition[0]);
-      this.setState({
-        tiles: update(this.state.tiles, {[old]: {playerOne: {$set: false}}})
-      })
-      this.setState({
-        tiles: update(this.state.tiles, {[newer]: {playerOne: {$set: true}}})
-      })
-    } else if (newPosition === "bomb") {
-      console.log("plant bomb");
-      const i = this.state.tiles.indexOf(position[0]);
-      this.setState({
-        tiles: update(this.state.tiles, {[i]: {bomb: {$set: true}}})
-      })
-      if (this.state.tiles[i].bomb === true) {
-          return this.bomb(i);
-        };
-
-    } else return
-  };
+    if (event.code === "KeyW" || event.code === "KeyE" || event.code === "KeyA" || event.code === "KeyD" || event.code === "KeyS") {
+      let position = this.state.tiles.filter(tile => tile.playerTwo === true);
+      let newPosition = movement(event, position[0]);
+      let atPosition = this.state.tiles.filter(tile => tile.x === newPosition[0] && tile.y === newPosition[1] && tile.cement === false && tile.crate === false && tile.bomb === false && tile.playerOne === false)
+      if (atPosition.length) {
+        const old = this.state.tiles.indexOf(position[0]);
+        const newer = this.state.tiles.indexOf(atPosition[0]);
+        this.setState({
+          tiles: update(this.state.tiles, {[old]: {playerTwo: {$set: false}}})
+        })
+        this.setState({
+          tiles: update(this.state.tiles, {[newer]: {playerTwo: {$set: true}}})
+        })
+      } else if (newPosition === "bomb") {
+          console.log("plant bomb");
+          const i = this.state.tiles.indexOf(position[0]);
+          this.setState({
+            tiles: update(this.state.tiles, {[i]: {bomb: {$set: true}}})
+          })
+          if (this.state.tiles[i].bomb === true) {
+            return this.bomb(i);
+        }
+      } //end first if with playerTwo movement
+    } else if (event.code === "ArrowUp" || event.code === "Space"|| event.code === "ArrowDown" || event.code === "ArrowRight" || event.code === "ArrowLeft"){
+      let position = this.state.tiles.filter(tile => tile.playerOne === true);
+      let newPosition = movement(event, position[0]);
+      let atPosition = this.state.tiles.filter(tile => tile.x === newPosition[0] && tile.y === newPosition[1] && tile.cement === false && tile.crate === false && tile.bomb === false && tile.playerTwo === false)
+      if (atPosition.length) {
+        const old = this.state.tiles.indexOf(position[0]);
+        const newer = this.state.tiles.indexOf(atPosition[0]);
+        this.setState({
+          tiles: update(this.state.tiles, {[old]: {playerOne: {$set: false}}})
+        })
+        this.setState({
+          tiles: update(this.state.tiles, {[newer]: {playerOne: {$set: true}}})
+        })
+      } else if (newPosition === "bomb") {
+          console.log("plant bomb");
+          const i = this.state.tiles.indexOf(position[0]);
+          this.setState({
+            tiles: update(this.state.tiles, {[i]: {bomb: {$set: true}}})
+          })
+          if (this.state.tiles[i].bomb === true) {
+            return this.bomb(i);
+          };
+        }
+      } else return
+    }; //end movement playerOne movement
 
   componentDidMount(){
     window.addEventListener('keydown', this.handleKeyDown.bind(this))

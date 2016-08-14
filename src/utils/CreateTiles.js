@@ -21,12 +21,21 @@ const createTiles = function(){
   // console.log(tiles);
   // const rando = Math.floor(Math.random() * 81)
   tiles[80].playerOne = true;
-
+  tiles[0].playerTwo = true;
   tiles[40].crate = true;
   // tiles[41].crate = true;
   // tiles[39].crate = true;
   tiles[31].crate = true;
   tiles[49].crate = true;
+  tiles[21].crate = true;
+  tiles[69].crate = true;
+  tiles[72].crate = true;
+  tiles[16].crate = true;
+  tiles[42].crate = true;
+  tiles[54].crate = true;
+  tiles[4].crate = true;
+  tiles[14].crate = true;
+  tiles[11].crate = true;
   return tiles;
 
 };
