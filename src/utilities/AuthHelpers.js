@@ -10,32 +10,36 @@ firebaseapp.initializeApp(config)
 
 const firebaseUtils = {
 
-    signUp: function (email, pass, obj) {
-        const auth = firebaseapp.auth();
-        auth.createUserWithEmailAndPassword(email, pass).catch((error) => {
-            if (error) {
-                console.log("error: ", error)
-            }
-        }).then((res) => {
-            console.log(res);
-            firebase.database().ref('users/'+res.uid).set({
-                firstName: obj.firstName,
-                lastName: obj.lastName,
-                userName: obj.userName,
-                email: obj.email
-            })
+  signUp: (email, pass) => {
+      console.log("signing up...", email, pass);
+      firebase.auth().createUserWithEmailAndPassword(email, pass).catch(err => {
+          if (err) {
+              console.error(err.code, err.message)
+          }
+      }).then(res => {
+        console.log("helper",res);
+        firebase.database().ref("users/"+res.uid).set({
+          uid: res.uid,
         })
-    },
-    signIn: function (email, password) {
-        firebase.auth().signInWithEmailAndPassword(email, password).catch(error => {
-            console.error(error.code, error.message);
-        }).then((res) => {
-            console.log("auth", res);
-            console.log("auth", res.uid);
-            window.localStorage.setItem("uid", res.uid);
-        });
-    },
-
+        window.localStorage.setItem("uid", res.uid);
+        console.info(window.localStorage.getItem("uid"));
+        }
+      )
+  },
+  logIn: (email, pass) => {
+      console.log("loggging in...", email, pass);
+      firebase.auth().signInWithEmailAndPassword(email, pass).catch(err => {
+          // Handle Errors here.
+          if (err) {
+              console.error(err.code, err.message)
+          }
+      }).then(res => {
+        console.log("logged in...", res);
+        window.localStorage.setItem("uid", res.uid);
+        console.info(window.localStorage.getItem("uid"));
+        }
+      );
+  },
     checkUser: function (uid) {
   firebase.auth().onAuthStateChanged(function(uid) {
   if (uid) {

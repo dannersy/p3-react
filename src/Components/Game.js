@@ -13,7 +13,7 @@ class Game extends Component {
     super(props)
     this.state = {
       tiles: [],
-      userId: window.localStorage.uid,
+      userId: localStorage.getItem("uid"),
       text : "shreiya"
     }
   };
@@ -125,9 +125,15 @@ class Game extends Component {
   };
 
   saveUserData() {
-    helpers.writeUserData();
-    console.log("save user stuff")
-  }
+    const data = {
+      saved : this.state.text
+    }
+    console.log(this.state.text)
+    helpers.saveWinningUser(this.state.userId, data)
+    .then(res => {
+      console.log(res)
+    })
+    }
 
   // writeUserData(event){
   //     firebase.database().ref('users/' + this.state.userId).set({
@@ -179,8 +185,8 @@ class Game extends Component {
       <br></br>
       <button><Link to="/">Let's go home!</Link></button>
       <div>
-        <h1>I won!</h1>
-        <button onClick={(event) => this.saveUserData(event)}>Save my score?</button>
+        <h1>{this.state.text} won!</h1>
+        <button onClick={(event) => this.saveUserData(event)}>Save this bit of info?</button>
       </div>
       <TileContainer tiles={this.state.tiles} />
       <button onClick={(event) => this.getData(event)}>Get My Score</button>
