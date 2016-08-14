@@ -30,20 +30,24 @@ makeUser(event, email, pw, obj) {
 
 render() {
   return(
-    <div>
-
+    <div className="SignUpBox">
       <h1>SIGN UP</h1>
-        <ul>
-          <li> First Name: <input onChange={(event) => this.setState({firstName: event.target.value})} /></li>
-          <li> Last Name: <input onChange={(event) => this.setState({lastName: event.target.value})} /></li>
-          <li> Email: <input onChange={(event) => this.setState({email: event.target.value})} /></li>
-          <li> Username: <input onChange={(event) => this.setState({username: event.target.value})} /></li>
-          <li> Password: <input onChange={(event) => this.setState({pw: event.target.value})} /></li>
-        </ul>
-        <button onClick={(event) => this.makeUser(event)}><Link to="/LogIn">Make Me!</Link></button>
-      <h1>OR</h1>
-        <h1><Link to="/LogIn">SIGN IN</Link></h1>
+        <div>
+          <form className="form-inline">
+  <div className="form-group">
+    <label className="sr-only" for="exampleInputEmail3">Email address</label>
+    <input type="email" className="form-control" id="exampleInputEmail3" placeholder="Email" onChange={(event) => this.setState({email: event.target.value})} />
+  </div>
+  <div className="form-group">
+    <label className="sr-only" for="exampleInputPassword3">Password</label>
+    <input type="password" className="form-control" id="exampleInputPassword3" placeholder="Password" onChange={(event) => this.setState({pw: event.target.value})} />
+  </div>
+  <button type="submit" className="btn btn-default" onClick={(event) => this.makeUser(event)}><Link to="/LogIn">Sign up</Link></button>
+</form>
 
+</div>
+<h1>OR</h1>
+  <h1><Link to="/LogIn">SIGN IN</Link></h1>
     </div>
 
   )

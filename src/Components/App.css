@@ -1,6 +1,28 @@
 .App {
   text-align: center;
+  background: url("https://media1.giphy.com/avatars/haydiroket.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
   font-family: 'Press Start 2P', cursive;
-  width: 100%;
-  height: 80vh;
+  color: black;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Header {
+  border: 7px solid black;
+  background-color: black;
+  color: cornflowerblue;
+}
+
+ul.nav.nav-tabs {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.SignUpBox {
+  background-color: black;
+  color: cornflowerblue;
+  padding: 10px;
 }
