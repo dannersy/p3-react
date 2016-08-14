@@ -16,19 +16,19 @@ class Board extends Component {
 
   checkWin(){
     const tiles = this.state.tiles;
-    const playerOne = this.state.tiles.filter(tile => tile.playerOne === true);
-    const playerTwo = this.state.tiles.filter(tile => tile.playerTwo === true);
+    const playerOne = tiles.filter(tile => tile.playerOne === true);
+    const playerTwo = tiles.filter(tile => tile.playerTwo === true);
     if (playerOne.length && playerTwo.length){
       return
     } else if (playerOne.length) {
-      this.setState({winner: "one"})
+      this.setState({winner: "one"});
     } else if (playerTwo.length) {
-      this.setState({winner: "two"})
+      this.setState({winner: "two"});
     } else {
-      this.setState({winner: "tie"})
+      this.setState({winner: "tie"});
     }
     console.log(this.state.winner);
-  }
+  } //Check winner
 
   fireTimer(){
     const App = this;
@@ -164,10 +164,14 @@ class Board extends Component {
     }; //end movement playerOne movement
 
   componentDidMount(){
-    window.addEventListener('keydown', this.handleKeyDown.bind(this))
+    window.addEventListener('keydown', this.handleKeyDown.bind(this));
     this.setState({tiles: createTiles()});
     this.fireTimer();
   }; //Adds event listener and setsState of gameboard
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
+  };
 
   render(){
     return(
