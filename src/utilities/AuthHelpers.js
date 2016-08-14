@@ -1,4 +1,5 @@
 import firebaseapp from 'firebase';
+import firebase from 'firebase';
 
 const config = {
   apiKey: "AIzaSyDaA4ZGQODQrfl4SX_B8RP7SEWnhkHpviI",
@@ -40,7 +41,7 @@ const firebaseUtils = {
         }
       );
   },
-    checkUser: function (uid) {
+    checkUser: function(uid) {
   firebase.auth().onAuthStateChanged(function(uid) {
   if (uid) {
     console.log("You're in!")

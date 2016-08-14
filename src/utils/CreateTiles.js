@@ -21,6 +21,7 @@ const createTiles = function(){
   // console.log(tiles);
   // const rando = Math.floor(Math.random() * 81)
   tiles[80].playerOne = true;
+  tiles[79].playerTwo = true;
 
   tiles[40].crate = true;
   // tiles[41].crate = true;

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+
 import NavLink from './NavLink';
 import './AboutGame.css';
 import AtvImg from 'react-atv-img';
+
 
 class AboutGame extends Component {
 

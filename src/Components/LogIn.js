@@ -7,7 +7,8 @@ class LogIn extends Component {
     super(props);
     this.state = {
       email : " ",
-      pw : " "
+      pw : " ",
+      userId: localStorage.getItem("uid")
     }
   }
 
@@ -17,6 +18,8 @@ class LogIn extends Component {
         helpers.logIn(this.state.email, this.state.pw);
         console.log("YOU'RE IN!")
     };
+
+    
 
 
   render() {

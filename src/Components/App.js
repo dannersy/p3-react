@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import NavLink from './NavLink';
+
 import { Nav } from 'react-bootstrap';
+
+
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+
         <h2 className="Header">BOMBERMAN</h2>
           <ul className="nav nav-tabs">
             <li role="presentation" className="active" className="home"><NavLink to='/' onlyActiveOnIndex>Home</NavLink></li>

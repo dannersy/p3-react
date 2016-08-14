@@ -1,26 +1,19 @@
 const help = {
-
-  stored: "",
-
-  store: (gift) => {
-    // console.log(gift);
-    help.stored = gift
-    return gift
-  },
-
-  getFromHelper: () => {
-    // const stored = help.store()
-    // console.log(stored)
-    return help.stored
-  },
-
-  makeArray: (arr, stateObj) => {
-    for (let key in stateObj) {
-      if (stateObj.hasOwnProperty(key)) {
-        arr.push(stateObj[key]);
-      }
+  save: (dataObj, uid) => {
+    const fetchSettings = {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(dataObj)
     }
-    return arr
+    const url = "https://bomberman-react.firebaseio.com/" + "/uid" + "high-scores.json"
+    return fetch(url, fetchSettings);
+  },
+
+  showAll: () => {
+    const url = "https://bomberman-react.firebaseio.com/high-scores.json?print=pretty"
+    return fetch(url)
   }
 }
 
