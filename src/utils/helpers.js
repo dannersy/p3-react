@@ -1,5 +1,7 @@
 const help = {
-  save: (dataObj, uid) => {
+  saved: "",
+  savedTwoWithInitials: [],
+  save: (dataObj) => {
     const fetchSettings = {
       method: 'POST',
       headers: new Headers({
@@ -7,18 +9,34 @@ const help = {
       }),
       body: JSON.stringify(dataObj)
     }
-    const url = "https://bomberman-react.firebaseio.com/"
+    const url = "https://bomberman-react.firebaseio.com/non-user-high-scores.json"
     return fetch(url, fetchSettings);
   },
-
-  showAll: () => {
-    const url = "https://bomberman-react.firebaseio.com/high-scores.json?print=pretty"
-    return fetch(url)
+  saveToUser: (dataObj, uid) => {
+    const fetchSettings = {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(dataObj)
+    }
+    const url = `https://bomberman-react.firebaseio.com/users/${uid}/high-scores.json`
+    return fetch(url, fetchSettings);
   },
-
- // + "/uid" + "high-scores.json"
-
-
+  saveAnObj: (saveObj) => {
+    return help.saved = saveObj
+  },
+  saveInitials: (saveObj) => {
+    help.savedTwoWithInitials.push(saveObj)
+    return help.savedTwoWithInitials
+  },
+  grabObj: () => {
+    return help.saved
+  },
+  showAll: () => {
+    const url = "https://bomberman-react.firebaseio.com/non-user-high-scores.json?print=pretty"
+    return fetch(url)
+  }
 }
 
 module.exports = help

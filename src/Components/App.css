@@ -9,11 +9,17 @@
   height: 100vh;
 }
 
+.scoress {
+  padding: 5px;
+}
 .Header {
   border: 7px solid black;
   background-color: black;
   color: cornflowerblue;
+  margin: 0;
+  padding: 10px;
 }
+
 
 ul.nav.nav-tabs {
   background-color: black;
@@ -22,6 +28,12 @@ ul.nav.nav-tabs {
 }
 
 .SignUpBox {
+  background-color: black;
+  color: cornflowerblue;
+  padding: 10px;
+}
+
+.HighScores {
   background-color: black;
   color: cornflowerblue;
   padding: 10px;

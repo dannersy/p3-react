@@ -39,7 +39,7 @@ let userId = this.state.userid;
           <label className="sr-only">Password</label>
           <input type="password" className="form-control" id="exampleInputPassword3" placeholder="Password" onChange={(event) => this.setState({pw: event.target.value})} />
         </div>
-        <button type="submit" className="btn btn-default" onClick={(event) => this.signIn(event)}><NavLink to="/game">Let's do this!</NavLink></button>
+        <button type="submit" className="btn btn-default" onClick={(event) => this.signIn(event)}><NavLink to="/bomberman/game">Let's do this!</NavLink></button>
       </form>
     </div>
     )

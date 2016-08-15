@@ -1,6 +1,10 @@
 {
   "name": "p3-react",
   "version": "0.0.1",
+  "engines": {
+    "node": "6.2.1",
+    "npm": "3.10.2"
+  },
   "private": true,
   "devDependencies": {
     "react-scripts": "0.2.1"
@@ -13,6 +17,7 @@
     "firebase": "^3.2.1",
     "mongodb": "^2.2.5",
     "nodemon": "^1.10.0",
+    "path": "^0.12.7",
     "react": "^15.2.1",
     "react-addons-update": "^15.3.0",
     "react-atv-img": "^0.1.1",

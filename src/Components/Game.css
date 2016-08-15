@@ -4,6 +4,8 @@
 }
 .links {
   background-color: black;
+  height: 100%;
+  width: 100%;
 }
 
 .game {
@@ -15,11 +17,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: flex-start;;
+  align-items: flex-start;
   width: 100vw;
   height: 100%;
   background-color: black;
-
+  padding: 8px;
 }
 
 .grass {

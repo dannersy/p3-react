@@ -8,6 +8,8 @@ import { Link } from 'react-router';
 import './Game.css';
 import help from '../utils/helpers.js'
 import helpers from '../utils/AuthHelpers';
+import { browserHistory } from 'react-router';
+
 
 
 class Game extends Component {
@@ -34,31 +36,63 @@ class Game extends Component {
       this.setState({winner: "player two"})
     } else {
       this.setState({winner: "tie!"})
-
     }
 
-    if (this.state.winner !== "false") {
+    if (this.state.winner !== "false" && this.state.userId) {
       let saveObj = {}
+      saveObj.user = this.state.userId
       saveObj.winner = this.state.winner
       saveObj.time = new Date()
+      if (saveObj) {
+        help.saveAnObj(saveObj)
+        this.componentWillUnmount()
+        browserHistory.push('/bomberman/game-over')
+      }
 
 
+      // help.saveToUser(saveObj, this.state.userId).then( res => {
+      //   console.log("44",res);
+      //   return res.json()
+      // }).then( json => {
+      //   browserHistory.push('/bomberman/game-over')
+      //   this.componentWillUnmount()
+      //
+      //   // this.setState({
+      //   //   highScores: json
+      //   // })
+      // })
+    } else if (this.state.winner !== "false" && !this.state.userId) {
+      // let saveObj = {}
+      // saveObj.winner = this.state.winner
+      // saveObj.time = new Date()
+      // help.save(saveObj).then( res => {
+      //   console.log("59",res);
+      //   return res.json()
+      // }).then( json => {
+      //   browserHistory.push('/bomberman/game-over')
+      //   this.componentWillUnmount()
+      //
+      //   // this.setState({
+      //   //   highScores: json
+      //   // })
+      // })
+    }
+  };
 
-      help.save(saveObj).then( res => {
-        console.log(res);
-        return res.json()
-      }).then( json => {
-        return console.log("this is the json from saving the highscore", json);
-        // this.setState({
-        //   highScores: json
-        // })
-      })
-    };
+  componentDidMount(){
+    window.addEventListener('keydown', this.handleKeyDown.bind(this))
+    this.setState({tiles: createTiles()});
+    this.fireTimer();
+  }; //Adds event listener and setsState of gameboard
+
+  componentWillUnmount() {
+    clearInterval(this.fireTimerID)
+    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
   };
 
   fireTimer(){
     const App = this;
-    window.setInterval(function(){
+    App.fireTimerID = setInterval(function(){
       App.eachFire();
       App.checkWin();
     }, 500)
@@ -190,6 +224,7 @@ class Game extends Component {
     }; //end movement playerOne movement
 
 
+
   saveUserData() {
     const data = {
       saved : this.state.text
@@ -264,6 +299,7 @@ class Game extends Component {
     this.checkIfUser(this.state.userId)
 
   }; //Adds event listener and setsState of gameboard
+
 
   render(){
     return(

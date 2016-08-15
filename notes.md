@@ -6,5 +6,6 @@ about game page
 README
 - how logic works
 
-
 logic to prevent game from starting if not logged in
+
+routes/links to properly navigate through site

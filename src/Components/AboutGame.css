@@ -6,7 +6,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url("https://media1.giphy.com/avatars/haydiroket.gif");
-    background-size: cover;
     background-repeat: no-repeat;
 }

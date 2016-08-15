@@ -10,7 +10,8 @@ var config = {
   };
 
 
-  firebase.initializeApp(config)
+firebaseapp.initializeApp(config)
+
 
   const createUser = {
   // signUp: function(email, password, username) {
@@ -139,6 +140,7 @@ var config = {
 
   signOut: function() {
     firebase.auth().signOut().then(function() {
+      console.log("logged out?");
     // Sign-out successful.
   }, function(error) {
     // An error happened.
