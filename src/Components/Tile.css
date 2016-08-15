@@ -1,10 +1,10 @@
-.tile {
+/*.tile {
   height: 30%;
   width: 30%;
   border: 1px solid black;
   float: left;
   background-color: green;
-}
+}*/
 .man {
   height: 100%;
   width: 100%;
@@ -21,6 +21,7 @@
   background-color: green;
 }
 .wall {
+  background-image: url("http://i.imgur.com/HhSZy0Z.png");
   height: 100%;
   width: 100%;
   background-color: green;

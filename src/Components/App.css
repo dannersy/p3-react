@@ -49,3 +49,11 @@ ul.nav.nav-tabs {
   background-color: black;
 color: cornflowerblue;
 }
+
+.AboutMakers {
+  display: flex;
+  justify-content: space-around;
+  border: 5px solid cornflowerblue;
+  background-color: black;
+  color: cornflowerblue;
+}

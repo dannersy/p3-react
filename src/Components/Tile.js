@@ -104,7 +104,7 @@ class Tile extends Component {
     const potentialCoords = this.state.potentialCoords
     const tileCoords = this.props.coords
     if (this.props.wall) {
-      return <div className="wall"><img role='presentation' className='icon' src="https://cdn0.iconfinder.com/data/icons/city-space-1/512/brick_wall-512.png"></img></div>
+      return <div className="wall"><img role='presentation' className='icon' src="http://i.imgur.com/HhSZy0Z.png"></img></div>
     } else if (tileCoords.x === postCoords.x && tileCoords.y === postCoords.y) {
       return <div className="man"><img role="presentation" className="icon" src="http://icons.iconarchive.com/icons/yellowicon/game-stars/128/Bomberman-icon.png"></img></div>
     } else if (tileCoords.x === potentialCoords.x && tileCoords.y === potentialCoords.y) {

@@ -6,10 +6,9 @@ class AboutMakers extends Component {
   render() {
     return (
       <div className="AboutMakers">
-        <h1>The Makers</h1>
         <div>
           <h2>Isaac</h2>
-          <img alt="" src="http://i.imgur.com/2ktBepM.jpg" />
+          <img alt="" src="http://i.imgur.com/NEXrR4M.png" />
           <br></br>
           <a href="https://www.linkedin.com/in/isaackang">linkedin</a>
           <br></br>
@@ -18,7 +17,7 @@ class AboutMakers extends Component {
         </div>
         <div>
           <h2>Daniel</h2>
-          <img alt="" src="http://i.imgur.com/Cx4TVEe.jpg" />
+          <img alt="" src="http://i.imgur.com/q23PkKQ.png" />
           <br></br>
           <a href="https://www.linkedin.com/in/danielyochumjr">linkedin</a>
           <br></br>
@@ -27,7 +26,7 @@ class AboutMakers extends Component {
         </div>
         <div>
           <h2>Shreiya</h2>
-          <img alt="" src="http://i.imgur.com/k12O9tG.png?1"></img>
+          <img alt="" src="http://i.imgur.com/4f5nmF3.png"></img>
           <br></br>
           <a href="https://www.linkedin.com/in/shreiya">linkedin</a>
           <br></br>
