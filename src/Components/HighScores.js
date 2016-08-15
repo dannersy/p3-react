@@ -12,10 +12,13 @@ class HighScores extends Component {
     }
   }
 
+  // if (firebaseHelpers.checkUser(App.state.userId) === true) {
+
+
   save(e) {
     e.preventDefault()
     const saveObj = {
-      winner: "Dan the Terrorist",
+      winner: "Dan",
       time: new Date()
     }
     if (saveObj) {
@@ -28,7 +31,6 @@ class HighScores extends Component {
       })
     }
   }
-
 
   show(e) {
     e.preventDefault()
@@ -62,7 +64,6 @@ class HighScores extends Component {
       </div>
     )
   }
-
 }
 
 export default HighScores;

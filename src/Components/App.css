@@ -33,7 +33,7 @@ ul.nav.nav-tabs {
   padding: 10px;
 }
 
-.links {
-  border: 1px solid black;
-  padding: 1%;
+.displayUser {
+  background-color: black;
+color: cornflowerblue;
 }

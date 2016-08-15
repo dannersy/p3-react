@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import update from 'react-addons-update'
 import createTiles from '../utils/CreateTiles.js';
+import firebaseHelpers from '../utils/AuthHelpers.js';
 import TileContainer from './TileContainer.js';
 import movement from '../utils/Movement.js';
-import helpers from '../utilities/NormalHelpers';
-import firebaseHelpers from '../utilities/AuthHelpers';
 import { Link } from 'react-router';
 import './Game.css';
 import help from '../utils/helpers.js'
-
+import helpers from '../utils/AuthHelpers';
 
 
 class Game extends Component {
@@ -17,15 +16,16 @@ class Game extends Component {
     this.state = {
       tiles: [],
       userId: localStorage.getItem("uid"),
-      text : "shreiya",
-      winner: "false"
+      displayName: localStorage.getItem("displayName"),
+      winner: "false",
+      response: ""
     }
   };
 
   checkWin() {
     const tiles = this.state.tiles;
-    const playerOne = this.state.tiles.filter(tile => tile.playerOne === true);
-    const playerTwo = this.state.tiles.filter(tile => tile.playerTwo === true);
+    const playerOne = tiles.filter(tile => tile.playerOne === true);
+    const playerTwo = tiles.filter(tile => tile.playerTwo === true);
     if (playerOne.length && playerTwo.length){
       return
     } else if (playerOne.length) {
@@ -42,7 +42,9 @@ class Game extends Component {
       saveObj.winner = this.state.winner
       saveObj.time = new Date()
 
-      help.save(saveObj, uid).then( res => {
+
+
+      help.save(saveObj).then( res => {
         console.log(res);
         return res.json()
       }).then( json => {
@@ -187,6 +189,7 @@ class Game extends Component {
       } else return
     }; //end movement playerOne movement
 
+
   saveUserData() {
     const data = {
       saved : this.state.text
@@ -203,6 +206,15 @@ class Game extends Component {
       firebaseHelpers.checkUser(this.state.userId)
       console.log("YAY! You're in!")
     }
+
+
+
+    // showUserName() {
+    //   help.getCurrentUser(this.state.userId).then((res) => {
+    //      this.setState({response: res})
+    //    })
+    //    console.log("new stuff!", this.state.response);
+    // }
 
 
   // writeUserData(event){
@@ -242,6 +254,7 @@ class Game extends Component {
 
 
 
+
   componentDidMount(){
 
     window.addEventListener('keydown', this.handleKeyDown.bind(this));
@@ -249,10 +262,12 @@ class Game extends Component {
     // this.fireTimer();//REMEMBER TO GET THIS BACK
 
     this.checkIfUser(this.state.userId)
+
   }; //Adds event listener and setsState of gameboard
 
   render(){
     return(
+
       <div>
       <br></br>
       <button><Link to="/">Let's go home!</Link></button>
@@ -260,9 +275,17 @@ class Game extends Component {
         <h1>{this.state.text} won!</h1>
         <button onClick={(event) => this.saveUserData(event)}>Save this bit of info?</button>
       </div>
+      <div className="displayUser">
+        <h2>Hello there {this.state.displayName}!</h2>
+      </div>
       <TileContainer tiles={this.state.tiles} />
       <button onClick={(event) => this.getData(event)}>Get My Score</button>
+
+      <div className="game">
+        <TileContainer tiles={this.state.tiles} />
+
       </div>
+    </div>
     )
   }; //Container worried about one state that changes based on user input.
 }

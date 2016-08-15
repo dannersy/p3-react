@@ -1,15 +1,25 @@
 .tileContainer {
-  width: 70%;
+  width: 100vw;
+  height: 80vh;
+}
+.links {
+  background-color: black;
+}
+
+.game {
+  width: 100%;
   height: 100%;
 }
 
 .bigContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
-  align-items: center;
-  width: 100%;
+  align-items: flex-start;;
+  width: 100vw;
   height: 100%;
+  background-color: black;
+
 }
 
 .grass {

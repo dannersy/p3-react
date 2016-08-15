@@ -9,8 +9,8 @@ import AboutMakers from './Components/AboutMakers';
 import AboutGame from './Components/AboutGame';
 import Bomberman from './Components/Bomberman';
 import HighScores from './Components/HighScores';
-import Game from './Components/Game';
 import SignUp from './Components/SignUp';
+import Game from './Components/Game';
 import LogIn from './Components/LogIn';
 import './index.css';
 
@@ -18,15 +18,14 @@ ReactDOM.render (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
-      <Route path="/bomberman" component={Bomberman} />
-      <Route path="/game" component={Game} />
+      <Route path="/bomberman" component={Bomberman}>
+        <Route path="/high_scores" component={HighScores} />
+        <Route path="/LogIn" component={LogIn} />
+        <Route path="/SignUp" component={SignUp} />
+        <Route path="/game" component={Game} />
+      </Route>
       <Route path="/about_game" component={AboutGame} />
       <Route path="/about_makers" component={AboutMakers} />
-
-      <Route path="/SignUp" component={SignUp} />
-      <Route path="/LogIn" component={LogIn} />
-      <Route path="/high_scores" component={HighScores} />
-
     </Route>
   </Router>,
   document.getElementById('root')
