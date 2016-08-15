@@ -23,7 +23,19 @@ const help = {
     const url = `https://bomberman-react.firebaseio.com/users/${uid}/high-scores.json`
     return fetch(url, fetchSettings);
   },
+  delete: (dataObj) => {
+    const fetchSettings = {
+      method: 'DELETE',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(dataObj)
+    }
+    const url = "https://bomberman-react.firebaseio.com/non-user-high-scores.json"
+    return fetch(url, fetchSettings)
+  },
   saveAnObj: (saveObj) => {
+
     return help.saved = saveObj
   },
   saveInitials: (saveObj) => {

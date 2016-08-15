@@ -6,7 +6,13 @@ const createTiles = function(){
       obj.x = i;
       obj.y = j;
       obj.playerOne = false;
-      obj.crate = false;
+      if ((i === 1 && j === 9) || (i === 2 && j === 9) || (i === 1 && j === 8)){
+        obj.crate = false;
+      } else if ((i === 9 && j === 1) || (i === 8 && j === 1) || (i === 9 && j === 2)){
+        obj.crate = false;
+      } else {
+        obj.crate = (Math.random() <= 0.5);
+      }
       if (obj.y % 2 === 0 && obj.x % 2 === 0) {
         obj.cement = true
       } else {
@@ -18,16 +24,18 @@ const createTiles = function(){
       tiles.push(obj);
     }
   }
-  // console.log(tiles);
-  // const rando = Math.floor(Math.random() * 81)
   tiles[80].playerOne = true;
   tiles[79].playerTwo = true;
 
-  tiles[40].crate = true;
-  // tiles[41].crate = true;
-  // tiles[39].crate = true;
-  tiles[31].crate = true;
-  tiles[49].crate = true;
+
+  // for (let i = 0; i < tiles.length; i++){
+  //   if (i === 0 || i ===  1 || i ===  9 || i ===  80 || i ===  79 || i ===  71){
+  //     tiles[i].crate === false;
+  //   } else if (Math.random() <= 0.5){
+  //     tiles[i].crate === true;
+  //   }
+  // }
+
   return tiles;
 
 };

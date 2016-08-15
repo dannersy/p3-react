@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import update from 'react-addons-update'
+import App from './App'
 import createTiles from '../utils/CreateTiles.js';
 import firebaseHelpers from '../utils/AuthHelpers.js';
 import TileContainer from './TileContainer.js';
@@ -40,54 +42,44 @@ class Game extends Component {
 
     if (this.state.winner !== "false" && this.state.userId) {
       let saveObj = {}
+      // const HandleKey = this.handleKeyDown.bind(this)
+      // window.removeEventListener('keydown', HandleKey, false);
       saveObj.user = this.state.userId
       saveObj.winner = this.state.winner
       saveObj.time = new Date()
       if (saveObj) {
-        help.saveAnObj(saveObj)
-        this.componentWillUnmount()
-        browserHistory.push('/bomberman/game-over')
+        const savedd = help.saveAnObj(saveObj)
+        clearInterval(this.fireTimerID)
+        if (savedd) {
+          browserHistory.push('/bomberman/game-over')
+        }
       }
 
-
-      // help.saveToUser(saveObj, this.state.userId).then( res => {
-      //   console.log("44",res);
-      //   return res.json()
-      // }).then( json => {
-      //   browserHistory.push('/bomberman/game-over')
-      //   this.componentWillUnmount()
-      //
-      //   // this.setState({
-      //   //   highScores: json
-      //   // })
-      // })
     } else if (this.state.winner !== "false" && !this.state.userId) {
-      // let saveObj = {}
-      // saveObj.winner = this.state.winner
-      // saveObj.time = new Date()
-      // help.save(saveObj).then( res => {
-      //   console.log("59",res);
-      //   return res.json()
-      // }).then( json => {
-      //   browserHistory.push('/bomberman/game-over')
-      //   this.componentWillUnmount()
-      //
-      //   // this.setState({
-      //   //   highScores: json
-      //   // })
-      // })
+      // const HandleKey = this.handleKeyDown.bind(this)
+      // window.removeEventListener('keydown', HandleKey, false);
+
+      let saveObj = {}
+      saveObj.winner = this.state.winner
+      saveObj.time = new Date()
+      if (saveObj) {
+        const savedd = help.saveAnObj(saveObj)
+        clearInterval(this.fireTimerID)
+        if (savedd) {
+          browserHistory.push('/bomberman/game-over')
+        }
+      }
     }
   };
 
   componentDidMount(){
-    window.addEventListener('keydown', this.handleKeyDown.bind(this))
+    window.addEventListener('keydown', this.handleKeyDown.bind(this), false)
     this.setState({tiles: createTiles()});
     this.fireTimer();
   }; //Adds event listener and setsState of gameboard
 
   componentWillUnmount() {
-    clearInterval(this.fireTimerID)
-    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
+    window.removeEventListener('keydown', this.handleKeyDown.bind(this), false)
   };
 
   fireTimer(){

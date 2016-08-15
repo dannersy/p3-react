@@ -35,10 +35,20 @@ class HighScores extends Component {
     })
   }
 
+  deleteScore(e) {
+    e.preventDefault()
+    const ident = e.target.value
+    const id = e.target.id
+    help.delete(ident)
+  }
+
   showScores(score, index) {
     if (score) {
       return (
-        <div className="scoress">{score.initials}{"  on  "}{score.time}</div>
+        <div key={index} className="scoress">
+          {score.initials}{"  on  "}{score.time}
+          <button onClick={(event) => this.deleteScore(event)} id={score.uid} value={score.user}>DELETE</button>
+        </div>
       )
     }
   }
