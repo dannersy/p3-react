@@ -11,10 +11,10 @@ class AboutGame extends Component {
 
           layers={[
             'http://i.imgur.com/ZBxEnh2.png',
-            'http://i.imgur.com/4ZKknW4.png',
+            'http://i.imgur.com/76TpRZY.png',
           ]}
-          staticFallback="http://i.imgur.com/exZsvQU.png"
-          style={{ width: 800, height: 700 }}
+          staticFallback="http://i.imgur.com/5ndOzQw.png"
+          style={{ width: 570, height: 550 }}
         />
 
     </div>

@@ -27,7 +27,6 @@ ReactDOM.render (
         <Route path="/high_scores" component={HighScores} />
         <Route path="/LogIn" component={LogIn} />
         <Route path="/SignUp" component={SignUp} />
-        <Route path="/game" component={Game} />
 
         <Route path="/bomberman/high_scores" component={HighScores} />
         <Route path="/bomberman/log-in" component={LogIn} />

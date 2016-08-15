@@ -306,7 +306,7 @@ class Game extends Component {
       <div className="displayUser">
         <h2>Hello there {this.state.displayName}!</h2>
       </div>
-      <TileContainer tiles={this.state.tiles} />
+      
       <button onClick={(event) => this.getData(event)}>Get My Score</button>
 
       <div className="game">
