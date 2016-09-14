@@ -32,6 +32,7 @@
 }
 
 .grass {
+  position: relative;
   background-image: url('http://i.imgur.com/8VvWcuc.jpg');
   background-size: cover;
   height: 11%;
@@ -39,11 +40,8 @@
   float: left;
 }
 
-.icon {
-  height: 100%;
-  width: 100%;
-}
-.Sicon {
+.robotIcon {
+  position: static;
   height: 100%;
   width: 100%;
 }
@@ -73,6 +71,13 @@
 .bomb{
   background-image: url('http://i.imgur.com/8VvWcuc.jpg');
   background-size: cover;
+  height: 100%;
+  width: 60%;
+}
+
+.bombPlayer{
+  z-index: 1;
+  position: absolute;
   height: 100%;
   width: 60%;
 }
