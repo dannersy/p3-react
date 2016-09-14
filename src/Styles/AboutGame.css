@@ -16,8 +16,8 @@
 
 .atvContainer {
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    width: 75vw;
+    height: 75vh;
     justify-content: center;
     align-items: center;
 }

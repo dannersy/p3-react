@@ -44,10 +44,6 @@
     flex-direction: row;
 }
 
-
-
-
-
 .scoress {
   padding: 5px;
 }
@@ -81,15 +77,18 @@
 
 .AboutMakers {
   display: flex;
+  position: absolute;
   justify-content: space-around;
   border: 5px solid cornflowerblue;
   background-color: black;
   color: cornflowerblue;
-  width: 100%;
-  padding-bottom: 75%;
+  width: 100vw;
+  height: 100vh;
 }
 .third {
+    position:relative;
     display: flex;
     flex-direction: column;
-    padding-bottom: 75%
+    width: 30%;
+    height: 50%;
 }
