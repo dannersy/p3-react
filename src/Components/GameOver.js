@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import '../Styles/App.css';
@@ -12,17 +13,9 @@ class GameOver extends Component {
         }
     }
 
-    // handleSubmit(e) {
-    //     e.preventDefault()
-    //     const savedObj = help.grabObj()
-    //     console.log(savedObj.winner + "wins!");
-    //     const initials = this.state.text
-    //     if (savedObj) {
-    //         savedObj.initials = initials
-    //         const test = help.save(savedObj)
-    //         console.log(test);
-    //     }
-    // }
+    handlePress(){
+      browserHistory.push('/game')
+    }
 
     // getData(event){
     //   const get =  firebase.database().ref('users/' + this.state.userID).once('value').then(function(snapshot) {
@@ -45,22 +38,19 @@ class GameOver extends Component {
     //     }
     // }
 
-    handleChange(e) {
-        this.setState({
-            text: e.target.value
-        })
-    }
+    // handleChange(e) {
+    //     this.setState({
+    //         text: e.target.value
+    //     })
+    // }
 
     render() {
-
+      console.log(this.props);
         return (
             <div className="GameOver">
                 <h1>GAME OVER</h1>
-                <h3></h3>
-                <form onSubmit={(event) => this.handleSubmit(event)}>
-                    <input onChange={(event) => this.handleChange(event)} type="text" placeholder="input your initials" maxLength="3"></input>
-                    <button>{"Submit to High Scores"}</button>
-                </form>
+                <h3>{this.state.text}</h3>
+                <button onClick={() => this.handlePress()}>{"Play Again!"}</button>
             </div>
         );
     }
