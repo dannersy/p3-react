@@ -13,9 +13,7 @@ class App extends Component {
                     <NavLink className="navLinks" to='/about_makers' onlyActiveOnIndex>About The Makers</NavLink>
                     <NavLink className="navLinks" to='/game' onlyActiveOnIndex>REACT MAN</NavLink>
                 </nav>
-                <div>
-                    {this.props.children}
-                </div>
+                {this.props.children}
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import '../Styles/App.css';
@@ -13,9 +13,10 @@ class GameOver extends Component {
         }
     }
 
-    handlePress(){
-      browserHistory.push('/game')
-    }
+    // handlePress(e){
+    //   e.prevenDefault();
+    //   browserHistory.push('/game')
+    // }
 
     // getData(event){
     //   const get =  firebase.database().ref('users/' + this.state.userID).once('value').then(function(snapshot) {
@@ -45,12 +46,11 @@ class GameOver extends Component {
     // }
 
     render() {
-      console.log(this.props);
         return (
             <div className="GameOver">
                 <h1>GAME OVER</h1>
-                <h3>{this.state.text}</h3>
-                <button onClick={() => this.handlePress()}>{"Play Again!"}</button>
+                <h3>{this.props.params.winner}</h3>
+                <button><Link to={'/game'}>{"Play Again!"}</Link></button>
             </div>
         );
     }

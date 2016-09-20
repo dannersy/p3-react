@@ -4,6 +4,7 @@ import '../Styles/App.css';
 class AboutMakers extends Component {
     render() {
         return (
+          <div>
             <div className="AboutMakers">
                 <div className="third">
                     <h2>Isaac</h2>
@@ -27,6 +28,7 @@ class AboutMakers extends Component {
                     <a href="https://github.com/Shreiya">GitHub</a>
                 </div>
             </div>
+          </div>
         )
     }
 }

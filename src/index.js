@@ -19,7 +19,7 @@ ReactDOM.render (
             <IndexRoute component={AboutGame} />
             <Route path="/about_makers" component={AboutMakers} />
             <Route path="/game" component={Game} />
-            <Route path="/game-over" component={GameOver} />
+            <Route path="/game-over/:winner" component={GameOver} />
         </Route>
     </Router>,
     document.getElementById('root')
