@@ -9,43 +9,43 @@ import '../Styles/App.css';
 // import help from '../utils/helpers.js'
 import { browserHistory } from 'react-router';
 
-
 class Game extends Component {
   constructor(props) {
     super(props)
-    console.log(props);
+    // console.log(props);
     this.state = {
       tiles: [],
       userId: localStorage.getItem("uid"),
-      displayName: localStorage.getItem("displayName"),
-      winner: "false"
+      displayName: localStorage.getItem("displayName")
     }
   };
 
   checkWin() {
-
     const tiles = this.state.tiles;
     const playerOne = tiles.filter(tile => tile.playerOne === true);
     const playerTwo = tiles.filter(tile => tile.playerTwo === true);
+    // console.log("playerOne: ", playerOne);
+    // console.log("playerTwo: ", playerTwo);
     if (playerOne.length && playerTwo.length) {
       return
-    } else if (playerOne.length) {
+    } else if (!playerOne.length) {
       // this.setState({
       //     winner: "player one"
       // })
-      browserHistory.push('/game-over/PlayerOne Wins!')
-    } else if (playerTwo.length) {
+      browserHistory.push('/game-over/PlayerTwo Wins!')
+    } else if (!playerTwo.length) {
       // this.setState({
       //     winner: "player two"
       // })
-      browserHistory.push('/game-over/PlayerTwo Wins!')
-    } else {
+      browserHistory.push('/game-over/PlayerOne Wins!')
+    } else if (!playerOne.length && !playerTwo.length){
       // this.setState({
       //     winner: "tie!"
       // })
       browserHistory.push('/game-over/Tie!')
     }
   };
+
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown.bind(this), false)
@@ -54,11 +54,6 @@ class Game extends Component {
     });
     this.fireTimer();
   }; //Adds event listener and setsState of gameboard
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown.bind(this), false)
-
-  };
 
   fireTimer() {
     const App = this;
@@ -240,8 +235,8 @@ class Game extends Component {
     if(this.props.route.path === '/game'){
       gameStyles = {background: "rgba(0,0,0,0.8)"}
     }
-    console.log(this.props.route.path);
-    console.log(gameStyles);
+    // console.log(this.props.route.path);
+    // console.log(gameStyles);
       return(
         <div style={gameStyles} className='gameCont'>
           <div className="game">
