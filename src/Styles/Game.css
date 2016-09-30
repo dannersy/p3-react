@@ -27,6 +27,18 @@
   height: 600px;
 }
 
+.instructions {
+  border: solid yellow 2px;
+  background: white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 600px;
+  height: 600px;
+}
+
 /*.game:after {
   content: "";
   display: block;

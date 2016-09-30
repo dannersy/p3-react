@@ -1,22 +1,17 @@
 import React, {Component} from 'react';
 import update from 'react-addons-update'
 import createTiles from '../utils/CreateTiles.js';
-// import firebaseHelpers from '../utils/AuthHelpers.js';
 import TileContainer from './TileContainer.js';
 import movement from '../utils/Movement.js';
 import '../Styles/Game.css';
 import '../Styles/App.css';
-// import help from '../utils/helpers.js'
 import { browserHistory } from 'react-router';
 
 class Game extends Component {
   constructor(props) {
     super(props)
-    // console.log(props);
     this.state = {
-      tiles: [],
-      userId: localStorage.getItem("uid"),
-      displayName: localStorage.getItem("displayName")
+      tiles: []
     }
   };
 
@@ -24,40 +19,34 @@ class Game extends Component {
     const tiles = this.state.tiles;
     const playerOne = tiles.filter(tile => tile.playerOne === true);
     const playerTwo = tiles.filter(tile => tile.playerTwo === true);
-    // console.log("playerOne: ", playerOne);
-    // console.log("playerTwo: ", playerTwo);
     if (playerOne.length && playerTwo.length) {
       return
     } else if (!playerOne.length) {
-      // this.setState({
-      //     winner: "player one"
-      // })
       browserHistory.push('/game-over/PlayerTwo Wins!')
     } else if (!playerTwo.length) {
-      // this.setState({
-      //     winner: "player two"
-      // })
       browserHistory.push('/game-over/PlayerOne Wins!')
     } else if (!playerOne.length && !playerTwo.length){
-      // this.setState({
-      //     winner: "tie!"
-      // })
       browserHistory.push('/game-over/Tie!')
     }
   };
 
-
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown.bind(this), false)
+    window.addEventListener('keydown', this.controls = (e) => this.handleKeyDown(e))
     this.setState({
       tiles: createTiles()
     });
     this.fireTimer();
   }; //Adds event listener and setsState of gameboard
 
+  componentWillUnmount(){
+    clearInterval(this.fireInterval);
+    clearInterval(this.bombInterval);
+    window.removeEventListener('keydown', this.controls)
+  }
+
   fireTimer() {
     const App = this;
-    App.fireTimerID = setInterval(function(){
+    this.fireInterval = window.setInterval(function(){
       App.eachFire();
       App.checkWin();
     }, 500)
@@ -87,7 +76,7 @@ class Game extends Component {
 
   bomb(bombIndex) {
     const App = this;
-    window.setTimeout(function(){
+    this.bombInterval = window.setTimeout(function(){
       App.explosion(bombIndex)
     },3000)
   }; //Start bomb/explosion timer
@@ -238,15 +227,14 @@ class Game extends Component {
     // console.log(this.props.route.path);
     // console.log(gameStyles);
       return(
-        <div style={gameStyles} className='gameCont'>
+        <div id='theGame' style={gameStyles} className='gameCont'>
           <div className="game">
             <TileContainer tiles={this.state.tiles} />
           </div>
         </div>
       )
   }; //Container worried about one state that changes based on user input.
-
-
 }
+
 
 export default Game;

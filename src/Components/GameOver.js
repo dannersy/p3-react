@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -15,7 +16,7 @@ class GameOver extends Component {
 
     handleClick(e){
       e.preventDefault();
-      window.location.reload()
+      // ReactDOM.unmountComponentAtNode(document.getElementById('theGame'))
       browserHistory.push('/game')
     }
 
@@ -45,7 +46,6 @@ class GameOver extends Component {
     //         text: e.target.value
     //     })
     // }
-
     render() {
         return (
             <div className="GameOver">

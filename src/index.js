@@ -10,6 +10,7 @@ import AboutGame from './Components/AboutGame';
 // import LogIn from './Components/LogIn';
 // import SignUp from './Components/SignUp';
 import Game from './Components/Game';
+import Instructions from './Components/Instructions'
 import GameOver from './Components/GameOver';
 import './Styles/index.css';
 
@@ -18,7 +19,8 @@ ReactDOM.render (
         <Route path="/" component={App}>
             <IndexRoute component={AboutGame} />
             <Route path="/about_makers" component={AboutMakers} />
-            <Route path="/game" component={Game} />
+            <Route path="/instructions" component={Instructions} />
+            <Route path='/game' component={Game} />
             <Route path="/game-over/:winner" component={GameOver} />
         </Route>
     </Router>,
