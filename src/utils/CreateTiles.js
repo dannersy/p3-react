@@ -8,7 +8,6 @@ export default (props) => {
             obj.x = i;
             obj.y = j;
             obj.playerOne = false;
-
             if ( (i === 1 && j === 9) || (i === 2 && j === 9) || (i === 1 && j === 8) ){
                 obj.crate = false;
             } else if ( (i === 9 && j === 1) || (i === 8 && j === 1) || (i === 9 && j === 2) ){
@@ -16,13 +15,11 @@ export default (props) => {
             } else {
                 obj.crate = (Math.random() <= 0.5);
             }
-
             if (obj.y % 2 === 0 && obj.x % 2 === 0) {
                 obj.cement = true
             } else {
                 obj.cement = false;
             }
-
             obj.bomb = false;
             obj.playerTwo = false;
             obj.fire = false;
