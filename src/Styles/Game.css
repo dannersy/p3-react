@@ -28,15 +28,32 @@
 }
 
 .instructions {
-  border: solid yellow 2px;
-  background: white;
+  border: solid cornflowerblue 5px;
+  color: cornflowerblue;
+  background: black;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-self: center;
+  justify-content: space-around;
   flex-direction: column;
   width: 600px;
   height: 600px;
+  padding: 25px;
+}
+
+.instructionsCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.playButton {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 25%;
 }
 
 /*.game:after {

@@ -51,7 +51,7 @@ class GameOver extends Component {
             <div className="GameOver">
                 <h1>GAME OVER</h1>
                 <h3>{this.props.params.winner}</h3>
-                <button onClick={ e => this.handleClick(e)}>{"Play Again!"}</button>
+                <button className="playButton" onClick={ e => this.handleClick(e)}>{"Play Again!"}</button>
             </div>
         );
     }
