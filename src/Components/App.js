@@ -7,13 +7,13 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h1 className="Header">REACT MAN</h1>
+              <h1 className="Header">REACT MAN</h1>
                 <nav className="nav">
-                    <NavLink className="navLinks" to='/' onlyActiveOnIndex>Home</NavLink>
-                    <NavLink className="navLinks" to='/about_makers' onlyActiveOnIndex>About The Makers</NavLink>
-                    <NavLink className="navLinks" to='/instructions' onlyActiveOnIndex>REACT MAN</NavLink>
+                  <NavLink className="navLinks" to='/' onlyActiveOnIndex>Home</NavLink>
+                  <NavLink className="navLinks" to='/about_makers' onlyActiveOnIndex>About The Makers</NavLink>
+                  <NavLink className="navLinks" to='/instructions' onlyActiveOnIndex>REACT MAN</NavLink>
                 </nav>
-                {this.props.children}
+              {this.props.children}
             </div>
         );
     }
