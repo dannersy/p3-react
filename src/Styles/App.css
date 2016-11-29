@@ -71,8 +71,8 @@
 }
 
 .displayUser {
-    background-color: black;
-    color: cornflowerblue;
+  background-color: black;
+  color: cornflowerblue;
 }
 
 .AboutMakers {
@@ -86,9 +86,9 @@
   height: 100vh;
 }
 .third {
-    position:relative;
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    height: 50%;
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 50%;
 }

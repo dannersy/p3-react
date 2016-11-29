@@ -2,7 +2,7 @@
   "name": "p3-react",
   "version": "0.1.0",
   "engines": {
-    "node": "6.3.1",
+    "node": "6.6.0",
     "npm": "3.10.6"
   },
   "main": "server.js",
