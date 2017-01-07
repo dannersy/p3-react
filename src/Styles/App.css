@@ -21,27 +21,29 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 70px;
 }
 
 .nav {
-    background-color: black;
-    display: flex;
-    align-items: center;
+  height: 25px;
+  background-color: black;
+  display: flex;
+  align-items: center;
 }
 
 .navLinks {
-    height: 100%;
-    width: 100%;
-    margin-left: 7%;
-    margin-right: 7%;
+  height: 25px;
+  width: 100%;
+  margin-left: 7%;
+  margin-right: 7%;
 }
 
 
 .bottom {
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 .scoress {
@@ -75,20 +77,38 @@
   color: cornflowerblue;
 }
 
+.about-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  widows: 100%;
+}
+
 .AboutMakers {
   display: flex;
   position: absolute;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   border: 5px solid cornflowerblue;
   background-color: black;
   color: cornflowerblue;
-  width: 100vw;
-  height: 100vh;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
 }
+
 .third {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.third img{
   position:relative;
   display: flex;
-  flex-direction: column;
-  width: 30%;
+  width: 60%;
   height: 50%;
 }

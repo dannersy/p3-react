@@ -4,7 +4,7 @@ import '../Styles/App.css';
 class AboutMakers extends Component {
     render() {
         return (
-          <div>
+          <div className="about-wrapper">
             <div className="AboutMakers">
                 <div className="third">
                     <h2>Isaac</h2>
