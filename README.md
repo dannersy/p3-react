@@ -20,7 +20,7 @@ These objects represent a tile with it's current status:
 ## Flow
 
 #### Movement
-The flow starts with our listener, looking for a keydown from either of our two players. When a direction is pressed, we run `movement()` with our player's current tile and the event. This returns an x and y coordinates with the proposed movement of the player. If a tile on the board exists and is considered "moveable" (ie no crate, bomb or player present), the objects/tiles with old position and new position are then updated with the proper player booleans.
+The flow starts with our listener, looking for a keydown from either of our two players. When a direction is pressed, we run `movement()` with our player's current tile and the event. This returns an x and y coordinates with the proposed movement of the player. If a tile on the board exists and is considered "moveable" (ie no crate, bomb or player present), the objects/tiles with the old and new positions are then updated with the proper player booleans.
 
 #### Drop Bomb
 A timer is set for each bomb that is placed. The timer runs an explosion function after three seconds. With the tile coordinates of our bomb, we make a new array of arrays, one for each direction, containing our possible coordinates to be exploded. This is tricky: a crate should be destroyed but can be used as cover, a wall should not be destroyed and of course can be used as cover. We check that if one block away cannot explode, check the next direction. If that block can be destroyed and the first block was not a crate, the second block from the bomb explodes.
@@ -28,7 +28,7 @@ A timer is set for each bomb that is placed. The timer runs an explosion functio
 
 #### Animate / Win Condition
 
- Instead of removing the blocks that explode they are replace with fire. It works similarly in that there is a timer, but it is constantly running with a quicker interval. Even though it's slightly inconsistent, it works great with checking for a win condition. We circumvent having a max of 8 separate timers for each bomb explosion, and now if someone walks into a fire after explosion, that player is destroyed. When fire tiles/objects in the state are detected by the clearFire function, the state is reset without the fire and the possible player who steps in. The win condition is satisfied on the next interval of our fireTimer, again filtering to see which players are still standing.
+ Instead of removing the blocks that explode they are replace with fire. It works similarly in that there is a timer, but it is constantly running with a quicker interval. Even though it's slightly inconsistent, it works great with checking for a win condition. We circumvent having a max of 8 separate timers for each bomb explosion, and now if someone walks into a fire after explosion, that player is destroyed. When fire tiles/objects in the state are detected by the `clearFire()` function, the state is reset without the fire and the possible player who steps in. The win condition is satisfied on the next interval of our fireTimer, again filtering to see which players are still standing.
 
 ## What We Found:
 
