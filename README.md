@@ -9,7 +9,7 @@ We set out to make a game, using only vanilla React, to investigate it's capabil
 The entirety of the game logic is rounded around a singular state being a large array of objects that contain coordinates and boolean values.
 
 These objects represent a tile with it's current status:
- - **Position**: Coordinates for 9x9 board position and for condtionals
+ - **Position**: Coordinates for 9x9 board position and for conditionals
  - **Player**: Boolean
  - **Bomb**: Boolean
  - **Wall**: Boolean
