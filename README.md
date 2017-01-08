@@ -33,7 +33,7 @@ A timer is set for each bomb that is placed. The timer runs an explosion functio
 ## What We Found:
 
 You might ask, "Shouldn't each component handle their own state if they have their own data to manage?" After many revisions, we built the game differently for two big reasons:
-- To our surprise... reasoning, testing and management wasn't the problem; performance became the deciding factor! Performance was best when re-rendering the entire board. With their own logic and state, all components need to be "listening", this is super taxing. As many best practice documents state, the less amount of code in children components, the better.
+- To our surprise... reasoning, testing and state management weren't our biggest issues; performance became the deciding factor! Performance was best when re-rendering the entire board. With their own logic and state, all components need to be "listening", this is super taxing. As many best practice documents state, the less amount of code in children components, the better.
 
 - Conditionals became easier (more possible) to write. Keeping track of children states in the parent or container can be very cumbersome if you're not building a normal website. Instead, all logic is done in the parent component, "game state" can now be edited with mild filtering.
 
